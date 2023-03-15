@@ -81,26 +81,25 @@ fi
 ```bash
 #!/bin/bash
 
-# Comprobamos si se han recibido tres parámetros
 if [ $# -ne 3 ]; then
     echo "Error: Debe introducir tres parámetros."
     exit 1
 fi
 
-# Comprobamos si los dos primeros parámetros son números
+
 re='^[0-9]+$'
 if ! [[ $1 =~ $re ]] || ! [[ $2 =~ $re ]]; then
     echo "Error: Los dos primeros parámetros deben ser números enteros."
     exit 1
 fi
 
-# Comprobamos si el tercer parámetro es válido
+
 if [[ $3 != "+" && $3 != "-" && $3 != "x" && $3 != "/" ]]; then
     echo "Error: El tercer parámetro debe ser +, -, x o /."
     exit 1
 fi
 
-# Realizamos la operación correspondiente
+
 if [[ $3 == "+" ]]; then
     resultado=$(($1 + $2))
 elif [[ $3 == "-" ]]; then
@@ -117,13 +116,12 @@ echo "El resultado de la operación es: $resultado"
 ```bash
 #!/bin/bash
 
-# Verificar si se recibió un parámetro
+
 if [ $# -ne 1 ]; then
   echo "Debe ingresar la ruta del fichero como parámetro"
   exit 1
 fi
 
-# Verificar si el fichero existe
 if [ -f $1 ]; then
   echo "El fichero $1 existe"
 else
@@ -151,12 +149,9 @@ fi
 ```bash
 #!/bin/bash
 
-# Pedir ruta del archivo o directorio
 read -p "Introduce la ruta del archivo o directorio: " ruta
 
-# Comprobar si existe el archivo/directorio
 if [ -e "$ruta" ]; then
-  # Mostrar permisos
   permisos=$(ls -l "$ruta" | cut -d ' ' -f 1)
   echo "Los permisos de $ruta son: $permisos"
 else
@@ -223,37 +218,30 @@ done
 ```bash
 #!/bin/bash
 
-# Verificar que se haya ingresado un número como parámetro
 if [ $# -ne 1 ]; then
   echo "Error: se debe ingresar un número como parámetro"
   exit 1
 fi
 
-# Asignar el primer parámetro a una variable
 n=$1
 
-# Inicializar la variable de suma
 suma=0
 
-# Iterar desde 1 hasta n, acumulando la suma
 for (( i=1; i<=n; i++ )); do
   suma=$((suma+i))
 done
 
-# Imprimir el resultado de la suma
 echo "La suma de los números del 1 al $n es: $suma"
 ```
 ## 16. Recibir dos números por parámetro. El programa deberá hacer que el primer parámetro tome el valor del segundo parámetro y el segundo parámetro tome el valor del primero. Por ejemplo, si se introduce el 2 y el 0, en un principio$1 es 1 y $2 es 9. Tras la ejecución del programa $1 valdrá 9 y $2 1.
 ```bash
 #!/bin/bash
 
-# Comprobar si el número de parámetros es correcto
 if [ $# -ne 2 ]; then
   echo "Error: Se deben pasar dos números por parámetro."
   exit 1
 fi
 
-# Intercambiar los valores de las variables
 aux=$1
 1=$2
 2=$aux
@@ -278,13 +266,10 @@ done
 ```bash
 #!/bin/bash
 
-# Declarar el array
 declare -a palabras
 
-# Inicializar el índice
 i=0
 
-# Leer palabras hasta que se escriba ":q"
 while true
 do
     read palabra
@@ -296,10 +281,8 @@ do
     ((i++))
 done
 
-# Ordenar el array
 sorted=($(for word in "${palabras[@]}"; do echo "$word"; done | sort))
 
-# Guardar el array en un archivo
 printf "%s\n" "${sorted[@]}" > palabras.txt
 
 echo "Las palabras han sido guardadas en palabras.txt"
@@ -325,14 +308,10 @@ echo "¡Hasta pronto!"
 ```bash
 #!/bin/bash
 
-# Pedimos al usuario que introduzca un número
 numero = input("Introduce un número: ")
 
-# Abrimos el archivo en modo lectura
 with open('numero.txt', 'r') as archivo:
-    # Leemos todas las líneas del archivo y las almacenamos en una lista
     numeros = archivo.readlines()
-    # Comprobamos si el número introducido se encuentra en la lista
     if numero+'\n' in numeros:
         print("El número {} se encuentra en el archivo".format(numero))
     else:
