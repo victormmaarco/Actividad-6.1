@@ -1,4 +1,4 @@
-## Sistemas informáticos - Actividad 6.1
+# Sistemas informáticos - Actividad 6.1
 
 ## 1. Recibir un número entero por teclado y decir si es positivo
 ```bash
